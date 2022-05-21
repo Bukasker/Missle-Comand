@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class TownsManager : MonoBehaviour
 {
-    public GameObject[] NotDestroyedTowns;
+    [SerializeField] private GameObject[] NotDestroyedTowns;
+
+    public int NotDestroyedTownsCounter
+    {
+        get
+        {
+            return NotDestroyedTowns.Length;
+        }
+    }
 
     [SerializeField] private GameObject destroyedTownPrefab;
 

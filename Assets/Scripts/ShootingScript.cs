@@ -7,8 +7,8 @@ public class ShootingScript : MonoBehaviour
     public Transform firePoint;
     public GameObject bulletPrefab;
 
-    private float _bulletForce = 15f;
-    // Update is called once per frame
+    [SerializeField] private float _bulletForce = 15f;
+    
     void Update()
     {
         if (Input.GetButtonDown("Fire1"))

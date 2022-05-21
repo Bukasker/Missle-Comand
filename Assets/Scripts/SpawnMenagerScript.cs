@@ -17,10 +17,9 @@ public class SpawnMenagerScript : MonoBehaviour
         InvokeRepeating("SpawnRockets", startDelay, spawnInterval);
     }
 
-    // Update is called once per frame
     void SpawnRockets()
     { 
-        if(_townsManager.NotDestroyedTowns.Length == 0) return;
+        if(_townsManager.NotDestroyedTownsCounter == 0) return;
 
         Vector2 spawnPos = new Vector2(Random.Range(-spawnRangeX, spawnRangeX),6f) ;
 
@@ -28,6 +27,6 @@ public class SpawnMenagerScript : MonoBehaviour
         var instantiatedRocketScript = instantiatedRocket.GetComponent<RocketScript>();
         instantiatedRocketScript.townToAim = _townsManager.GetRandomNotDestroyedTown();
 
-        instantiatedRocketScript.onRocketReachedTown += _townsManager.OnRocketReachedTown;  
+        instantiatedRocketScript.OnRocketReachedTown += _townsManager.OnRocketReachedTown;  
     }
 }

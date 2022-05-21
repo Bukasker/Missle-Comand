@@ -12,7 +12,7 @@ public class GameMenagerScript : MonoBehaviour
 
     void Update()
     {
-        if(townsManager.NotDestroyedTowns.Length == 0)
+        if(townsManager.NotDestroyedTownsCounter == 0)
         {
             GameOver = true;
         }
