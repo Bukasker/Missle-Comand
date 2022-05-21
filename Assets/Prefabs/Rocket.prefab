@@ -4959,9 +4959,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2ec24cdceb880b4bad710fb525fd908, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TownPrefabs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  TownIndex: 0
+  _TownsManager: {fileID: 0}

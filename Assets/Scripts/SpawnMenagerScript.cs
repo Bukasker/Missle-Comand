@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnMenagerScript : MonoBehaviour
 {
     public GameObject RocketPrefab;
+    [SerializeField] private TownsManager _townsManager;
 
     private float spawnRangeX = 5;
 
@@ -18,8 +19,15 @@ public class SpawnMenagerScript : MonoBehaviour
 
     // Update is called once per frame
     void SpawnRockets()
-    {
+    { 
+        if(_townsManager.NotDestroyedTowns.Length == 0) return;
+
         Vector2 spawnPos = new Vector2(Random.Range(-spawnRangeX, spawnRangeX),6f) ;
-        Instantiate(RocketPrefab, spawnPos,RocketPrefab.transform.rotation);
+
+        var instantiatedRocket = Instantiate(RocketPrefab, spawnPos,RocketPrefab.transform.rotation);
+        var instantiatedRocketScript = instantiatedRocket.GetComponent<RocketScript>();
+        instantiatedRocketScript.townToAim = _townsManager.GetRandomNotDestroyedTown();
+
+        instantiatedRocketScript.onRocketReachedTown += _townsManager.OnRocketReachedTown;  
     }
 }

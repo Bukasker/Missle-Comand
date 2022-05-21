@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class GameMenagerScript : MonoBehaviour
 {
+    public TownsManager townsManager;
+
     public static int TownNumber = 4;
 
     public bool GameOver;
-    // Update is called once per frame
+
     void Update()
     {
-        if (TownNumber == 0)
+        if(townsManager.NotDestroyedTowns.Length == 0)
         {
             GameOver = true;
         }

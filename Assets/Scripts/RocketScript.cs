@@ -3,36 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using UnityEngine.Events;
 
 public class RocketScript : MonoBehaviour
-{
-    public GameObject[] TownPrefabs;
-
+{ 
     private float _RocketSpeed = 3f;
 
-    public int TownIndex;
-    
-    private Animator _animator;
+    public GameObject townToAim;
+    public Vector3 townToAimPosition;
 
-    void Start()
-    {
-        TownIndex = UnityEngine.Random.Range(0, TownPrefabs.Length);
-    }
+    public event EventHandler<GameObject> onRocketReachedTown;
 
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, TownPrefabs[TownIndex].transform.position, _RocketSpeed * Time.deltaTime);
-        transform.up = TownPrefabs[TownIndex].transform.position - transform.position;
+        townToAimPosition = (townToAim == null) ? townToAimPosition : townToAim.transform.position;
+        transform.position = Vector2.MoveTowards(transform.position, townToAimPosition, _RocketSpeed * Time.deltaTime);
+        transform.up = townToAimPosition - transform.position;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
 
-        foreach(var townPrefab in TownPrefabs)
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if(collider.CompareTag("Town"))
         {
-            if(townPrefab == collision.collider)
-            {
-                TownPrefabs = TownPrefabs.Where(t=>t!=townPrefab).ToArray();
-            }
+            onRocketReachedTown?.Invoke(this, townToAim);
         }
 
         Destroy(gameObject);
