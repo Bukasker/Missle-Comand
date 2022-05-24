@@ -8,18 +8,45 @@ public class ShootingScript : MonoBehaviour
     public GameObject bulletPrefab;
 
     [SerializeField] private float _bulletForce = 15f;
-    
+    [SerializeField] private int BulletsPerRound = 30;
+    public static int BulletCounter;
+
+    public AudioSource ShootingSound;
+    private void Start()
+    {
+        ShootingSound = this.GetComponent<AudioSource>();
+
+        BulletCounter = BulletsPerRound;
+        MenuScript.onNextRound += ResetBulletCounter;
+    }
+
+    private void OnDisable()
+    {
+        MenuScript.onNextRound -= ResetBulletCounter;
+    }
+
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && !GameMenagerScript.GameOver && !GameMenagerScript.isGamePaused)
         {
             Shoot();
         }
     }
+
     void Shoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firePoint.up * _bulletForce, ForceMode2D.Impulse);
+        if(BulletCounter > 0)
+        {
+            ShootingSound.Play();
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            rb.AddForce(firePoint.up * _bulletForce, ForceMode2D.Impulse);
+            BulletCounter--;
+        }        
+    }
+
+    public void ResetBulletCounter()
+    {
+        BulletCounter = BulletsPerRound;
     }
 }

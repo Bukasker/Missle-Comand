@@ -7,18 +7,20 @@ using UnityEngine.Events;
 
 public class RocketScript : MonoBehaviour
 {
-    [SerializeField] private float RocketSpeed = 3f;
+    [SerializeField] private float RocketSpeed = 2f;
 
     public GameObject townToAim;
     public Vector3 townToAimPosition;
-
     public event EventHandler<GameObject> OnRocketReachedTown;
 
     void Update()
     {
-        townToAimPosition = (townToAim == null) ? townToAimPosition : townToAim.transform.position;
-        transform.position = Vector2.MoveTowards(transform.position, townToAimPosition, RocketSpeed * Time.deltaTime);
-        transform.up = townToAimPosition - transform.position;
+        if (!GameMenagerScript.isGamePaused)
+        {
+            townToAimPosition = (townToAim == null) ? townToAimPosition : townToAim.transform.position;
+            transform.position = Vector2.MoveTowards(transform.position, townToAimPosition, RocketSpeed * Time.deltaTime);
+            transform.up = townToAimPosition - transform.position;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -27,7 +29,9 @@ public class RocketScript : MonoBehaviour
         {
             OnRocketReachedTown?.Invoke(this, townToAim);
         }
-
-        Destroy(gameObject);
+        else if (collider.CompareTag("DestroyedTown"))
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

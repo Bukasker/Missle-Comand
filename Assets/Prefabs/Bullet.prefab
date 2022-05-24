@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -6687881327569381887}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,4 +147,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitEffect: {fileID: 8415109165688670180, guid: 4a5cbb38e5ae8f447b42e4cd3cffab4a, type: 3}
-  Rocket: {fileID: 4575774442887662877, guid: c88bc4b0c9885314eae4b4a6ac545757, type: 3}

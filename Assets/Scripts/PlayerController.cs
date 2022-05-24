@@ -22,8 +22,11 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Vector2 lookDirection = mousePos - rb.position;
-        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
-        rb.rotation = angle;
+        if (!GameMenagerScript.GameOver && !GameMenagerScript.isGamePaused)
+        {
+            Vector2 lookDirection = mousePos - rb.position;
+            float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
+            rb.rotation = angle;
+        }
     }
 }

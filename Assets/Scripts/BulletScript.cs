@@ -5,7 +5,6 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour
 {
     public GameObject hitEffect;
-    public GameObject Rocket;
     private float _bulletPosX;
     private float _bulletPosY;
 
@@ -19,12 +18,15 @@ public class BulletScript : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        ScoreCountScript.score += 10; 
-        GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
-        Destroy(effect,0.2f);
-        Destroy(collision.gameObject);
-        Destroy(gameObject);
+        if (collider.CompareTag("Rocket"))
+        {
+            GameMenagerScript.Score += 10;
+            GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
+            Destroy(effect, 0.2f);
+            Destroy(collider.gameObject);
+            Destroy(gameObject);
+        }
     }
 }

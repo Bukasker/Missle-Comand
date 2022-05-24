@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5080541091850988989}
   - component: {fileID: 5080541091850988963}
   - component: {fileID: 203731388165651507}
-  - component: {fileID: 203731388165651510}
   m_Layer: 0
   m_Name: Town
   m_TagString: Town
@@ -134,17 +133,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &203731388165651510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5080541091850988990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54f08bab75aa44342b30e1d579ada6f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DestroyedTown: {fileID: 0}
-  TownNumber: 4
