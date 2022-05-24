@@ -17,7 +17,7 @@ public class GameMenagerScript : MonoBehaviour
     public static int PointsForNotDestroyedTowns = 100;
     public TextMeshProUGUI TimeText;
 
-    [SerializeField] private int RoundDuration = 15;
+    public static int RoundDuration = 15;
 
     public static int Score;
 

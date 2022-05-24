@@ -12,7 +12,7 @@ public class SpawnMenagerScript : MonoBehaviour
 
     private float spawnRangeX = 5;
 
-    private float startDelay = 2f;
+    public static float startDelay = 2f;
     public static float spawnInterval = 1.5f;
     public static float spawnIntervalModifier = .3f;
 

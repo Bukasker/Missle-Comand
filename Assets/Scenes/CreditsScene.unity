@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: KamilBukowczan
+  m_text: Kamil Bukowczan
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d6062db5388a615409778338f49a3bb9, type: 2}
   m_sharedMaterial: {fileID: 3691497602614267026, guid: d6062db5388a615409778338f49a3bb9, type: 2}
@@ -816,6 +816,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9641339303fcc864995f05a99fd3984e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameOverScreen: {fileID: 0}
+  Rockets: []
+  sceneName: 
+  _cursor: {fileID: 0}
 --- !u!4 &1550394182
 Transform:
   m_ObjectHideFlags: 0

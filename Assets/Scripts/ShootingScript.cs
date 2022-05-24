@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,6 @@ public class ShootingScript : MonoBehaviour
     public GameObject bulletPrefab;
 
     [SerializeField] private float _bulletForce = 15f;
-    [SerializeField] private int BulletsPerRound = 30;
     public static int BulletCounter;
 
     public AudioSource ShootingSound;
@@ -16,7 +16,7 @@ public class ShootingScript : MonoBehaviour
     {
         ShootingSound = this.GetComponent<AudioSource>();
 
-        BulletCounter = BulletsPerRound;
+        BulletCounter = GetBulletsPerRound();
         MenuScript.onNextRound += ResetBulletCounter;
     }
 
@@ -47,6 +47,11 @@ public class ShootingScript : MonoBehaviour
 
     public void ResetBulletCounter()
     {
-        BulletCounter = BulletsPerRound;
+        BulletCounter = GetBulletsPerRound();
+    }
+
+    private int GetBulletsPerRound()
+    {
+        return (int)Math.Ceiling(GameMenagerScript.RoundDuration / SpawnMenagerScript.spawnInterval) + 10;
     }
 }
